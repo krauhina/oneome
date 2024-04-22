@@ -1,28 +1,21 @@
 from PIL import Image
 import os
 
-im = Image.open("FOTO2.jpg")
-(width, height) = im.size
-height = 135
-
-height_percent = (height / float(im.size[1]))
-width = int((float(im.size[0]) * float(height_percent)))
-new_im = im.resize((width, height))
+im = Image.open("FOTO.jpg")
+#(width, height) = im.size
 
 def cropping():
-    k = 1
-    x = 20
-    max = width//100 + 1
-    for i in range(10000):
-        im_crop = new_im.crop((x, 10, 100*k, 130)) #переменная содержит обрезанную фотографию буквы
-        x += 100
-        k += 1
-        im_crop.save(f"lol{i}.jpg")
+    height_percent = (28 / float(im.size[1]))
+    width = int((float(im.size[0]) * float(height_percent)))
+    new_im = im.resize((width, 28))
+
+    x = 1
+    im_len = (width//19) + 1
+    for i in range(1, im_len):
+        im_crop = new_im.crop((x, 1, 20*i, 28))
+        x += 20
+        im_crop.show()
         chebe(im_crop)
-
-        if k == max:
-            break
-
 
 def chebe(img):
     img.thumbnail((28, 28))
@@ -39,7 +32,7 @@ def chebe(img):
             else:
                 ro = '0'
             x_g.append(ro)
-            if x == (18):
+            if x == 18:
                 itog.append(x_g)
                 x_g = []
     os.remove("bw.jpg")
