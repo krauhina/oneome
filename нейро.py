@@ -44,10 +44,20 @@ for epoch in range(epochs):
 		weights_input_to_hidden += -learning_rate * delta_hidden @ np.transpose(image)
 		bias_input_to_hidden += -learning_rate * delta_hidden
 
-
-
-	# вывод этапов обучения
-	'''print(f"Loss: {round((e_loss[0] / images.shape[0]) * 100, 3)}%")
-	print(f"Accuracy: {round((e_correct / images.shape[0]) * 100, 3)}%")'''
 	e_loss = 0
 	e_correct = 0
+
+#ПРОВЕРКА
+test_image = plt.imread("FOTO.jpg", format="jpeg")
+
+image = np.reshape(test_image, (-1, 1))
+
+hidden_raw = bias_input_to_hidden + weights_input_to_hidden @ image
+hidden = 1 / (1 + np.exp(-hidden_raw))
+
+output_raw = bias_hidden_to_output + weights_hidden_to_output @ hidden
+output = 1 / (1 + np.exp(-output_raw))
+
+plt.imshow(test_image.reshape(28, 28))
+plt.title(f"Это : {output.argmax()}")
+plt.show()
