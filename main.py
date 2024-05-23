@@ -14,8 +14,8 @@ def cropping():
     for i in range(1, im_len):
         im_crop = new_im.crop((x, 1, 20*i, 28))
         x += 20
-        im_crop.show()
-        chebe(im_crop)
+        # im_crop.show()
+        
 
 def chebe(img):
     img.thumbnail((28, 28))
