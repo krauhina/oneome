@@ -1,2 +1,2 @@
 # oneome
-team project
+team project - распознавание рукописного текста
